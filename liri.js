@@ -45,48 +45,51 @@ function SpotifyRequest(){
 
 function OmdbRequest (){
 
+	if(userinput >= 0 ){
 
-	if (userinput == undefined){
-		request('http://www.omdbapi.com/?t=mr+nobody&tomatoes=true&r=json', function(error,response,body){
-			
-			if (!error && response.statusCode === 200) {
+		console.log('Please type a valid movie name. Sample: movie-this <name-of-the-movie>')
 
-				var movie = JSON.parse(body);
+		} else if (userinput == undefined){
+			request('http://www.omdbapi.com/?t=mr+nobody&tomatoes=true&r=json', function(error,response,body){
 
-				console.log('\nMovie: '+ movie.Title+ 
-			    	'\nReleased: ' + movie.Released + 
-			    	'\nIMDB rating: '+ movie.imdbRating + 
-			    	'\nCountry: ' + movie.Country + 
-			    	'\nLanguage: ' + movie.Language + 
-			    	'\nPlot: ' + movie.Plot + 
-			    	'\nActors: ' + movie.Actors + 
-			    	'\nRotten Tomatoes rating: ' + movie.tomatoRating + 
-			    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
-			    	'\n-----------');
-			};
+				if (!error && response.statusCode === 200) {
 
-		});
+					var movie = JSON.parse(body);
 
-	} else {
-		request('http://www.omdbapi.com/?t=' + userinput + '&tomatoes=true&r=json', function(error,response,body){
+					console.log('\nMovie: '+ movie.Title+ 
+				    	'\nReleased: ' + movie.Released + 
+				    	'\nIMDB rating: '+ movie.imdbRating + 
+				    	'\nCountry: ' + movie.Country + 
+				    	'\nLanguage: ' + movie.Language + 
+				    	'\nPlot: ' + movie.Plot + 
+				    	'\nActors: ' + movie.Actors + 
+				    	'\nRotten Tomatoes rating: ' + movie.tomatoRating + 
+				    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
+				    	'\n-----------');
+				};
 
-			if (!error && response.statusCode === 200){
+			});
 
-				var movie = JSON.parse(body);
+		} else {
+			request('http://www.omdbapi.com/?t=' + userinput + '&tomatoes=true&r=json', function(error,response,body){
 
-			    console.log('\nMovie: '+ movie.Title+ 
-			    	'\nReleased: ' + movie.Released + 
-			    	'\nIMDB rating: '+ movie.imdbRating + 
-			    	'\nCountry: ' + movie.Country + 
-			    	'\nLanguage: ' + movie.Language + 
-			    	'\nPlot: ' + movie.Plot + 
-			    	'\nActors: ' + movie.Actors + 
-			    	'\nRotten Tomatoes rating: ' + movie.tomatoRating + 
-			    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
-			    	'\n-----------');
-			};
-	    });
-	  }
+				if (!error && response.statusCode === 200){
+
+					var movie = JSON.parse(body);
+
+				    console.log('\nMovie: '+ movie.Title+ 
+				    	'\nReleased: ' + movie.Released + 
+				    	'\nIMDB rating: '+ movie.imdbRating + 
+				    	'\nCountry: ' + movie.Country + 
+				    	'\nLanguage: ' + movie.Language + 
+				    	'\nPlot: ' + movie.Plot + 
+				    	'\nActors: ' + movie.Actors + 
+				    	'\nRotten Tomatoes rating: ' + movie.tomatoRating + 
+				    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
+				    	'\n-----------');
+				};
+		    });
+		  }
 
 	
 };
