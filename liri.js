@@ -35,15 +35,18 @@ switch(command) {
 			break;
 }
 
-function TwitterRequest (){  
+function twitterRequest (){
+	console.log(apiKeys.twitterKeys);
+	var twitter = require('twitter');
+		 
+};
+
+function spotifyRequest(){
+	console.log(apiKeys.spotifyKeys);
 
 };
 
-function SpotifyRequest(){
-
-};
-
-function OmdbRequest (){
+function omdbRequest (){
 
 	if(userinput >= 0 ){
 
@@ -94,8 +97,26 @@ function OmdbRequest (){
 	
 };
 
-function LiriBot(){
+function liriBot(){
 	fs.readFile('random.txt', 'utf8', function(err,data){
-		console.log(data);
+		
+		var liriTextInput = data.split(',');
+        
+        var liriInput1 = process.argv[0];
+        var liriInput2 = process.argv[1];
+
+		switch(liriInput1){
+			case 'my-tweets':
+			twitterRequest(liriInput2);
+			break
+
+			case 'spotify-this-song':
+			spotifyRequest(liriInput2);
+			break
+
+			case 'movie-this':
+			omdbRequest(liriInput2);
+			break
+		};
 	});
 };
