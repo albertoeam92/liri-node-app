@@ -31,7 +31,7 @@ switch(command) {
 
 		case 'do-what-it-says':
 
-			LiriBot();
+			liriBot();
 			break;
 }
 
@@ -102,9 +102,11 @@ function liriBot(){
 		
 		var liriTextInput = data.split(',');
         
-        var liriInput1 = process.argv[0];
-        var liriInput2 = process.argv[1];
-
+        var liriInput1 = liriTextInput[0];
+        var liriInput2 = liriTextInput[1];
+        console.log(liriInput1);
+        console.log(liriInput2);
+   
 		switch(liriInput1){
 			case 'my-tweets':
 			twitterRequest(liriInput2);
