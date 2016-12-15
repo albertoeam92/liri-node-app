@@ -67,6 +67,7 @@ function omdbRequest (){
 				    	'\nRotten Tomatoes rating: ' + movie.tomatoRating + 
 				    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
 				    	'\n-----------');
+					bonusLog(userinput);
 				};
 
 			});
@@ -88,6 +89,7 @@ function omdbRequest (){
 				    	'\nRotten Tomatoes rating: ' + movie.tomatoRating + 
 				    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
 				    	'\n-----------');
+				    bonusLog(userinput);
 				};
 		    });
 		  }
@@ -108,14 +110,17 @@ function liriBot(){
 		switch(liriInput1){
 			case 'my-tweets':
 			twitterRequest(liriInput2);
+			bonusLog(liriInput2)
 			break
 
 			case 'spotify-this-song':
 			spotifyRequest(liriInput2);
+			bonusLog(liriInput2)
 			break
 
 			case 'movie-this':
 			omdbRequest(liriInput2);
+			bonusLog(liriInput2)
 			break
 		};
 	});
@@ -126,7 +131,7 @@ function bonusLog (){
 	var logText1 = command;
 	var logText2 = userinput;
 
-	fs.append('log.txt',logText1 + logText2,function(err){
+	fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"',function(err){
 		if (err) {console.log(err)} else {
 			console.log('This was log: '+
 				'\n1: '+logText1+
