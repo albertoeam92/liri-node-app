@@ -133,7 +133,7 @@ function bonusLog (){
 
 	if (userinput == undefined) {
 
-		fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"',function(err){
+		fs.appendFile('log.txt','\n"'+ logText1 + ',' + logText2+'"',function(err){
 				if (err) {console.log(err)} else {
 					console.log('This was log: '+
 						'\n1: '+logText1);
@@ -141,7 +141,7 @@ function bonusLog (){
 		    });
 
 	} else {
-			fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"',function(err){
+			fs.appendFile('log.txt','\n"'+ logText1 + ',' + logText2+'"',function(err){
 				if (err) {console.log(err)} else {
 					console.log('This was log: '+
 						'\n1: '+logText1+
