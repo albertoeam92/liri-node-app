@@ -131,12 +131,23 @@ function bonusLog (){
 	var logText1 = command;
 	var logText2 = userinput;
 
-	fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"',function(err){
-		if (err) {console.log(err)} else {
-			console.log('This was log: '+
-				'\n1: '+logText1+
-				'\n2: '+logText2);
-		};
-	});
+	if (userinput == undefined) {
+
+		fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"',function(err){
+				if (err) {console.log(err)} else {
+					console.log('This was log: '+
+						'\n1: '+logText1);
+				};
+		    });
+
+	} else {
+			fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"',function(err){
+				if (err) {console.log(err)} else {
+					console.log('This was log: '+
+						'\n1: '+logText1+
+						'\n2: '+logText2);
+				};
+		    });
+	  };
 
 };
