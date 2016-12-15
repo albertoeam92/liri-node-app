@@ -5,8 +5,6 @@ var request = require('request');
 
 var command = process.argv[2];
 var userinput = process.argv[3];
-console.log(userinput);
-
 
 console.log('-----------');
 console.log('Command: ', command);
@@ -16,17 +14,17 @@ switch(command) {
 
 		case 'my-tweets':
 
-			TwitterRequest();
+			twitterRequest();
 			break;
 
 		case 'spotify-this-song':
 
-			SpotifyRequest();
+			spotifyRequest();
 			break;
 
 		case 'movie-this':
 
-			OmdbRequest();
+			omdbRequest();
 			break;
 
 		case 'do-what-it-says':
@@ -121,4 +119,19 @@ function liriBot(){
 			break
 		};
 	});
+};
+
+function bonusLog (){
+
+	var logText1 = command;
+	var logText2 = userinput;
+
+	fs.append('log.txt',logText1 + logText2,function(err){
+		if (err) {console.log(err)} else {
+			console.log('This was log: '+
+				'\n1: '+logText1+
+				'\n2: '+logText2);
+		};
+	});
+
 };
