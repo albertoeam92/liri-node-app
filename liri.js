@@ -42,15 +42,17 @@ function twitterRequest (){
 function spotifyRequest(){
 	console.log(apiKeys.spotifyKeys);
 
+
 };
 
 function omdbRequest (){
 
 	if(userinput >= 0 ){
 
-		console.log('Please type a valid movie name. Sample: movie-this <name-of-the-movie>')
+		console.log('Please type a valid movie name. Sample: movie-this <"name of the movie">');
 
 		} else if (userinput == undefined){
+			;
 			request('http://www.omdbapi.com/?t=mr+nobody&tomatoes=true&r=json', function(error,response,body){
 
 				if (!error && response.statusCode === 200) {
@@ -102,25 +104,33 @@ function liriBot(){
 		
 		var liriTextInput = data.split(',');
         
-        var liriInput1 = liriTextInput[0];
-        var liriInput2 = liriTextInput[1];
-        console.log(liriInput1);
-        console.log(liriInput2);
+        command = liriTextInput[0];
+        userinput = liriTextInput[1];  
+
    
-		switch(liriInput1){
+		switch(command){
 			case 'my-tweets':
-			twitterRequest(liriInput2);
-			bonusLog(liriInput2)
+			console.log('Liri is doing: '+
+        	'\nCommand: '+command+
+        	'\nSearch: '+userinput);
+			twitterRequest(userinput);
+			
 			break
 
 			case 'spotify-this-song':
-			spotifyRequest(liriInput2);
-			bonusLog(liriInput2)
+			console.log('Liri is doing: '+
+        	'\nCommand: '+command+
+        	'\nSearch: '+userinput);
+			spotifyRequest(userinput);
+			
 			break
 
 			case 'movie-this':
-			omdbRequest(liriInput2);
-			bonusLog(liriInput2)
+			console.log('Liri is doing: '+
+        	'\nCommand: '+command+
+        	'\nSearch: '+userinput);
+			omdbRequest(userinput);
+			
 			break
 		};
 	});
@@ -133,7 +143,7 @@ function bonusLog (){
 
 	if (userinput == undefined) {
 
-		fs.appendFile('log.txt','\n"'+ logText1 + ',' + logText2+'"',function(err){
+		fs.appendFile('log.txt','"'+ logText1 +'"\n',function(err){
 				if (err) {console.log(err)} else {
 					console.log('This was log: '+
 						'\n1: '+logText1);
@@ -141,7 +151,7 @@ function bonusLog (){
 		    });
 
 	} else {
-			fs.appendFile('log.txt','\n"'+ logText1 + ',' + logText2+'"',function(err){
+			fs.appendFile('log.txt','"'+ logText1 + ',' + logText2+'"\n',function(err){
 				if (err) {console.log(err)} else {
 					console.log('This was log: '+
 						'\n1: '+logText1+
