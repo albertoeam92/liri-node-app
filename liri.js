@@ -40,8 +40,18 @@ function twitterRequest (){
 };
 
 function spotifyRequest(){
-	console.log(apiKeys.spotifyKeys);
+	var spotify = require('spotify');
+ 
+    spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+        if ( err ) {
+        console.log('Error occurred: ' + err);
+        return;
+        }
 
+        console.log(data.tracks.artist);
+        console.log(data.tracks.name);
+        console.log(data.tracks.albums); 
+    });
 
 };
 
@@ -58,6 +68,13 @@ function omdbRequest (){
 				if (!error && response.statusCode === 200) {
 
 					var movie = JSON.parse(body);
+
+					if(movie.Response == 'False') {
+
+						console.log('Error: Movie not found!');
+						return;
+
+					};
 
 					console.log('\nMovie: '+ movie.Title+ 
 				    	'\nReleased: ' + movie.Released + 
@@ -80,6 +97,13 @@ function omdbRequest (){
 				if (!error && response.statusCode === 200){
 
 					var movie = JSON.parse(body);
+					
+					if(movie.Response == 'False') {
+
+						console.log('Error: Movie not found! Check for typos.');
+						return;
+
+					};
 
 				    console.log('\nMovie: '+ movie.Title+ 
 				    	'\nReleased: ' + movie.Released + 
@@ -92,9 +116,10 @@ function omdbRequest (){
 				    	'\nRotten Tomatoes page: ' + movie.tomatoURL +
 				    	'\n-----------');
 				    bonusLog(userinput);
+					 	    
 				};
 		    });
-		  }
+		  };
 
 	
 };
